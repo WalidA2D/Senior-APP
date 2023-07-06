@@ -2,26 +2,77 @@
 <html>
 <head>
   <title>Modifier la recette</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="checkbox"] {
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Modifier la recette</h1>
+  <div class="container">
+    <h1>Modifier la recette</h1>
 
-  <form action="/recettes/<%= @recette.nom %>" method="post">
-    <!-- Utilisez la méthode HTTP PATCH pour mettre à jour la recette -->
-    <input type="hidden" name="_method" value="patch">
+    <form action="/recettes/<%= @recette.nom %>" method="post">
+      <!-- Utilisez la méthode HTTP PATCH pour mettre à jour la recette -->
+      <input type="hidden" name="_method" value="patch">
 
-    <label for="nom">Nom de la recette:</label>
-    <input type="text" id="nom" name="recette[nom]" value="<%= @recette.nom %>">
+      <div>
+        <label for="nom">Nom de la recette:</label>
+        <input type="text" id="nom" name="recette[nom]" value="<%= @recette.nom %>" required>
+      </div>
 
-    <label for="ingredients">Ingrédients:</label>
-    <% Ingredient.all.each do |ingredient| %>
-      <label>
-        <input type="checkbox" name="recette[ingredient_ids][]" value="<%= ingredient.id %>" <%= 'checked' if @recette.ingredients.include?(ingredient) %>>
-        <%= ingredient.nom %>
-      </label>
-    <% end %>
+      <div>
+        <label for="ingredients">Ingrédients:</label>
+        <% Ingredient.all.each do |ingredient| %>
+          <label>
+            <input type="checkbox" name="recette[ingredient_ids][]" value="<%= ingredient.id %>" <%= 'checked' if @recette.ingredients.include?(ingredient) %>>
+            <%= ingredient.nom %>
+          </label>
+        <% end %>
+      </div>
 
-    <input type="submit" value="Enregistrer les modifications">
-  </form>
+      <input type="submit" value="Enregistrer les modifications">
+    </form>
+  </div>
 </body>
 </html>
