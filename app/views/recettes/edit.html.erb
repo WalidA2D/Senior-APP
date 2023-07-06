@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modifier la recette</title>
+</head>
+<body>
+  <h1>Modifier la recette</h1>
+
+  <form action="/recettes/<%= @recette.nom %>" method="post">
+    <!-- Utilisez la méthode HTTP PATCH pour mettre à jour la recette -->
+    <input type="hidden" name="_method" value="patch">
+
+    <label for="nom">Nom de la recette:</label>
+    <input type="text" id="nom" name="recette[nom]" value="<%= @recette.nom %>">
+
+    <label for="ingredients">Ingrédients:</label>
+    <% Ingredient.all.each do |ingredient| %>
+      <label>
+        <input type="checkbox" name="recette[ingredient_ids][]" value="<%= ingredient.id %>" <%= 'checked' if @recette.ingredients.include?(ingredient) %>>
+        <%= ingredient.nom %>
+      </label>
+    <% end %>
+
+    <input type="submit" value="Enregistrer les modifications">
+  </form>
+</body>
+</html>

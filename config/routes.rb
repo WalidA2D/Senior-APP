@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   get '/accueil', to: 'pages#accueil', as:'accueil_path' 
 
   
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/accueil/:nom/edit', to: 'recettes#edit', as: 'edit_recette'
+
+  patch '/recettes/:nom', to: 'recettes#update', as: 'update_recette'
 end

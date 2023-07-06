@@ -42,6 +42,7 @@
           <!-- <td>{{ recette.ingredients }}</td> -->
           <td>
             <button @click="showTooltip(recette)">Voir</button>
+            <button @click="editRecette(recette)">Modifier</button> <!-- Bouton de modification -->
           </td>
         </tr>
       </tbody>
@@ -88,6 +89,9 @@
           this.selectedRecette = null;
           const tooltip = document.querySelector('.tooltip');
           tooltip.style.display = 'none';
+        },
+        editRecette(recette) {
+          window.location.href = '/accueil/' + encodeURIComponent(recette.recette_nom) + '/edit';
         },
       },
     });
