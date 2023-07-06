@@ -19,10 +19,26 @@ class RecettesController < ApplicationController
     end
   end
 
+  def new
+    @recette = Recette.new
+    @ingredients = Ingredient.all
+  end
+
+  def create
+    @recette = Recette.new(recette_params)
+    if @recette.save
+      redirect_to accueil_path, notice: 'La recette a été créée avec succès.'
+    else
+      @ingredients = Ingredient.all
+      render :new
+    end
+  end
+
   private
 
+
   def accueil_path
-    '/accueil' # Remplacez cette valeur par le chemin réel de votre page d'accueil
+    '/accueil' 
   end
 
   def recette_params

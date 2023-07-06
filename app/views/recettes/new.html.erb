@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Créer une recette</title>
+</head>
+<body>
+  <h1>Créer une recette</h1>
+
+  <form action="/recettes" method="post">
+    <!-- Utilisez la méthode HTTP POST pour créer une nouvelle recette -->
+    <input type="hidden" name="_method" value="post">
+
+    <label for="nom">Nom de la recette:</label>
+    <input type="text" id="nom" name="recette[nom]">
+
+    <label for="ingredients">Ingrédients:</label>
+    <% Ingredient.all.each do |ingredient| %>
+      <label>
+        <input type="checkbox" name="recette[ingredient_ids][]" value="<%= ingredient.id %>">
+        <%= ingredient.nom %>
+      </label>
+    <% end %>
+
+    <input type="submit" value="Créer la recette">
+  </form>
+  <a href="/accueil">Annuler</a>
+</body>
+</html>

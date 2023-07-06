@@ -59,6 +59,8 @@
         <li v-for="ingredient in selectedRecette.ingredients" :key="ingredient">{{ ingredient }}</li>
       </ul>
     </div>
+
+    <button @click="createRecette">Créer une nouvelle recette</button>
   </div>
 
   <script>
@@ -92,6 +94,9 @@
         },
         editRecette(recette) {
           window.location.href = '/accueil/' + encodeURIComponent(recette.recette_nom) + '/edit';
+        },
+        createRecette() {
+          window.location.href = '/recettes/new';
         },
       },
     });
