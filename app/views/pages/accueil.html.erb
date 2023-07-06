@@ -1,0 +1,76 @@
+<!-- app/views/pages/accueil.html.erb -->
+
+<%= javascript_include_tag 'application' %>
+
+<%= content_for :head do %>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
+<% end %>
+
+<div id="app">
+  <div class="container">
+    <h1>Liste des recettes</h1>
+  
+    <div>
+      <input type="text" v-model="searchQuery" placeholder="Rechercher une recette">
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Ingrédients</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="recette in filteredRecettes" :key="recette">
+          <td>{{ recette.nom }}</td>
+          <td>
+            <ul>
+              <li v-for="ingredient in recette.ingredients" :key="ingredient">{{ ingredient.nom }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  import { createApp, ref, computed } from 'vue';
+
+  const app = createApp({
+    setup() {
+      const recettes = ref([]); // Les données des recettes provenant de la base de données
+      const searchQuery = ref(''); // La requête de recherche
+
+      const filteredRecettes = computed(() => {
+        // Filtrer les recettes en fonction de la requête de recherche
+        return recettes.value.filter(recette => recette.nom.toLowerCase().includes(searchQuery.value.toLowerCase()));
+      });
+
+      // Récupérer les données des recettes depuis la base de données (à adapter selon votre implémentation)
+      fetch('/recettes.json')
+        .then(response => response.json())
+        .then(data => {
+          recettes.value = data;
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite lors de la récupération des données des recettes:', error);
+        });
+
+      return {
+        recettes,
+        searchQuery,
+        filteredRecettes
+      };
+    }
+  });
+
+  app.mount('#app');
+</script>
