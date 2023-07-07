@@ -54,8 +54,9 @@ Voici les itinéraires principaux utilisés dans l'application :
 1. GET /accueil: Affiche la liste de toutes les recettes. (Accueil)
 2. GET /recette/new: Affiche le formulaire de création d'une nouvelle recette. (Accueil)
 3. POST /recette/new/save: Créez une nouvelle recette. (Nouvelle Recette)
-4. GET /recette/:id:/edit: Affiche le formulaire d'édition d'une recette existante. (Accueil)
-5. POST /recette/:id:/edit/save: Met à jour une recette existante. (Modification de Recette)
+4. GET /recette/:nom:/edit: Affiche le formulaire d'édition d'une recette existante. (Accueil)
+5. POST /recette/:nom:/edit/save: Met à jour une recette existante. (Modification de Recette)
+6. DELETE /recette/:nom:/delete: Supprimer une recette existante. (Modification de Recette)
 
 ## BD
 

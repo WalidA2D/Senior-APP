@@ -34,6 +34,19 @@ class RecettesController < ApplicationController
     end
   end
 
+  def destroy
+    recette = Recette.find_by(nom: params[:nom])
+
+    if recette.nil?
+      flash[:notice] = "La recette n'existe pas."
+    else
+      recette.destroy
+      flash[:notice] = "La recette a été supprimée avec succès."
+    end
+
+    redirect_to accueil_path
+  end
+
   private
 
 

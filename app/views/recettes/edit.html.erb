@@ -53,7 +53,6 @@
     <h1>Modifier la recette</h1>
 
     <form action="/recettes/<%= @recette.nom %>" method="post">
-      <!-- Utilisez la méthode HTTP PATCH pour mettre à jour la recette -->
       <input type="hidden" name="_method" value="patch">
 
       <div>
@@ -72,6 +71,11 @@
       </div>
 
       <input type="submit" value="Enregistrer les modifications">
+    </form>
+
+    <form action="/recettes/<%= @recette.nom %>/delete" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Supprimer la recette">
     </form>
   </div>
 </body>

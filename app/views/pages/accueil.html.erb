@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Liste des recettes</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <style>
-  body {
-    background-color: #f8f8f8;
-    font-family: 'Georgia', serif;
-    margin: 0;
-    padding: 20px;
-  }
+  <head>
+    <title>Liste des recettes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    body {
+      background-color: #f8f8f8;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 20px;
+    }
 
-  h1 {
-    font-size: 28px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
 
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-  }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
 
-  th {
-    font-weight: bold;
-  }
+    th {
+      font-weight: bold;
+    }
 
-  button {
-    background-color: #f4f4f4;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+    button {
+      background-color: #f4f4f4;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
 
-  button:hover {
-    background-color: #ddd;
-  }
+    button:hover {
+      background-color: #ddd;
+    }
 
-  .tooltip {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: none;
-  }
+    .tooltip {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: none;
+    }
 
-  .tooltip-close {
-    text-align: right;
-    margin-bottom: 5px;
-  }
-  </style>
-</head>
-<body>
+    .tooltip-close {
+      text-align: right;
+      margin-bottom: 5px;
+    }
+    </style>
+  </head>
+  <body>
   <h1>Liste des recettes</h1>
 
   <div id="app">
@@ -73,23 +73,20 @@
       <thead>
         <tr>
           <th>Nom de la recette</th>
-          <!-- <th>Ingrédients</th> -->
-          <th>Actions</th> <!-- Nouvelle colonne pour les boutons -->
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="recette in filteredRecettes" :key="recette.recette_nom">
           <td>{{ recette.recette_nom }}</td>
-          <!-- <td>{{ recette.ingredients }}</td> -->
           <td>
             <button @click="showTooltip(recette)">Voir</button>
-            <button @click="editRecette(recette)">Modifier</button> <!-- Bouton de modification -->
+            <button @click="editRecette(recette)">Modifier</button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <!-- Bulle d'information -->
     <div class="tooltip" v-if="selectedRecette">
       <div class="tooltip-close">
         <button @click="closeTooltip">Fermer</button>
