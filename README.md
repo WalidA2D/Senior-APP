@@ -1,24 +1,75 @@
-# README
+## Senior-APP
+![Ruby version](https://img.shields.io/badge/Ruby-3.0.0-blue) ![Ruby on Rails version](https://img.shields.io/badge/RubyOnRail-7.0.6-navy) ![Node.js version](https://img.shields.io/badge/NodeJs-12.22.9-red) ![NPM version](https://img.shields.io/badge/NPM-6.0-orange) 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ce projet consiste à créer une application web permettant de créer, rechercher, afficher et éditer des recettes de cuisine.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Avant de pouvoir utiliser l'application, assurez-vous d'avoir les prérequis nécessaires installés sur votre machine, tels que Ruby, Ruby on Rails, et une base de données MySQL, ensuite vous devez installer les composants suivants :
 
-* System dependencies
+1. ### Clonez le dépôt GitHub du projet :
 
-* Configuration
+  ``` bash 
+    git clone https://github.com/WalidA2D/Senior-APP.git
+  ```
 
-* Database creation
+2. ### Installez les dépendances Ruby en exécutant la commande suivante :
 
-* Database initialization
+  ``` bash 
+   bundle install
+  ```
 
-* How to run the test suite
+3. ### Installez les dépendances JavaScript en exécutant la commande suivante :
 
-* Services (job queues, cache servers, search engines, etc.)
+  ``` bash 
+  npm install
+  ```
 
-* Deployment instructions
+4. ### Créez et migrez la base de données :
 
-* ...
+  ``` bash 
+  rails db:create
+  rails db:migrate
+  ```
+5. ### Peupler la base de donées :
+
+  ```bash
+  rails db:seed
+  ```
+
+6. ### Lancez le serveur de développement :
+
+  ``` bash 
+  rails server
+  ```
+
+7. ### accédez à l'application dans votre navigateur à l'adresse :
+
+  ``` bash 
+  http://localhost:3000
+  ```
+## URL
+
+Voici les itinéraires principaux utilisés dans l'application :
+1. GET /accueil: Affiche la liste de toutes les recettes. (Accueil)
+2. GET /recette/new: Affiche le formulaire de création d'une nouvelle recette. (Accueil)
+3. POST /recette/new/save: Créez une nouvelle recette. (Nouvelle Recette)
+4. GET /recette/:id:/edit: Affiche le formulaire d'édition d'une recette existante. (Accueil)
+5. POST /recette/:id:/edit/save: Met à jour une recette existante. (Modification de Recette)
+
+## BD
+
+ ### MEA :
+
+ Recette
+- id (identifiant)
+- nom
+
+Ingredient
+- id (identifiant)
+- nom
+
+Association Recette_Ingredient
+- recette_id (clé étrangère référençant l'entité Recette)
+- ingredient_id (clé étrangère référençant l'entité Ingredient)
+
